@@ -17,6 +17,9 @@ public class Customer {
     private Long id;
     private String name;
     private double sales;
+    private double points;
+
+
 
 
 

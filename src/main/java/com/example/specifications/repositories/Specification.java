@@ -1,3 +1,4 @@
+/*
 package com.example.specifications.repositories;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
+/*
 
 @Repository
 public interface Specification<T>{
@@ -20,3 +21,4 @@ public interface Specification<T>{
     List<T> findAll(Specification<T> spec); // retrieves all the data which have the
                                             // specification criteria
 }
+*/

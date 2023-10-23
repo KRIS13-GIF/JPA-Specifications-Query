@@ -24,6 +24,11 @@ public class CustomerController {
         return customerServices.getCustomersWithSalesGreaterThan50();
     }
 
+    @GetMapping("/salesGreaterThan50andPointsLessThan30")
+    public List<CustomerResponse>getsalesGreaterThan50andPointsLessThan30(){
+        return customerServices.getCustomerWithSalesGreaterThan50AndPointsLessThan30();
+    }
+
 
 
 }
