@@ -33,6 +33,13 @@ public class CustomerServices {
                 .collect(Collectors.toList());
     }
 
+    public List<CustomerResponse>getCustomerAgeBetween18And25(){
+        List<Customer> customerList = customerRepository.findAll(CustomerSpecs.ageBetween18And25());
+        return customerList.stream()
+                .map(customer -> new CustomerResponse(customer.getName()))
+                .collect(Collectors.toList());
+    }
+
 
 
 

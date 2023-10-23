@@ -29,6 +29,11 @@ public class CustomerController {
         return customerServices.getCustomerWithSalesGreaterThan50AndPointsLessThan30();
     }
 
+    @GetMapping("/ageBetween18And25")
+    public List<CustomerResponse>getAgeBetween18And25(){
+        return customerServices.getCustomerAgeBetween18And25();
+    }
+
 
 
 }

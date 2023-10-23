@@ -18,6 +18,7 @@ public class Customer {
     private String name;
     private double sales;
     private double points;
+    private int age;
 
 
 

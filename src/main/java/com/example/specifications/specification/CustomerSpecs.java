@@ -13,5 +13,9 @@ public class CustomerSpecs {
         return ((root, query, criteriaBuilder) -> criteriaBuilder.lessThan(root.get("points"),20));
     }
 
+    public static Specification<Customer>ageBetween18And25(){
+        return (((root, query, criteriaBuilder) -> criteriaBuilder.between(root.get("age"),18,25)));
+    }
+
 
 }
