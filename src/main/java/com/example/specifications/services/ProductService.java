@@ -1,7 +1,6 @@
 package com.example.specifications.services;
 
 import com.example.specifications.entity.Product;
-import com.example.specifications.models.ProductRequest;
 import com.example.specifications.models.ProductResponse;
 import com.example.specifications.specification.ProductSpecs;
 import jakarta.persistence.EntityManager;
@@ -35,6 +34,7 @@ public class ProductService {
         return executeProductQuery(spec);
     }
 
+    // Applying re-usability
     private List<ProductResponse> executeProductQuery(Specification<Product> spec) {
         CriteriaBuilder criteriaBuilder = this.entityManager.getCriteriaBuilder();
         CriteriaQuery<ProductResponse> criteriaQuery = criteriaBuilder.createQuery(ProductResponse.class);
@@ -43,6 +43,7 @@ public class ProductService {
         criteriaQuery.select(criteriaBuilder.construct(
                 ProductResponse.class,
                 productRoot.get("id"),
+                productRoot.get("customer").get("name"),
                 productRoot.get("price"),
                 productRoot.get("description")
         ));

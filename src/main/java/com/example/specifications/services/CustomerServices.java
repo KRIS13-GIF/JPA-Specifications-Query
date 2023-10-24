@@ -1,12 +1,21 @@
 package com.example.specifications.services;
 
 import com.example.specifications.entity.Customer;
+import com.example.specifications.entity.CustomerProfile;
+import com.example.specifications.entity.Product;
 import com.example.specifications.models.CustomerResponse;
+import com.example.specifications.models.ProductResponse;
 import com.example.specifications.repositories.CustomerRepository;
 import com.example.specifications.specification.CustomerSpecs;
+import com.example.specifications.specification.ProductSpecs;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.*;
 import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +25,8 @@ import java.util.stream.Collectors;
 public class CustomerServices {
 
     private final CustomerRepository customerRepository;
+    private EntityManager entityManager;
+
 
 
     public List<CustomerResponse> getCustomersWithSalesGreaterThan50() {
@@ -39,6 +50,7 @@ public class CustomerServices {
                 .map(customer -> new CustomerResponse(customer.getName()))
                 .collect(Collectors.toList());
     }
+
 
 
 

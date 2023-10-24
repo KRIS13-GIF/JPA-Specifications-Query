@@ -21,7 +21,7 @@ public class CustomerProfile {
     private String address;
     private String phoneNumber;
     private boolean isPreferredCustomer;
-    private String loyaltyLevel;
+    private String loyalty_level;
     private String notes;
 
     @OneToOne
