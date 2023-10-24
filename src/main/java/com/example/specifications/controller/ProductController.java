@@ -3,6 +3,7 @@ package com.example.specifications.controller;
 
 import com.example.specifications.entity.Product;
 
+import com.example.specifications.models.ProductResponse;
 import com.example.specifications.services.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/customer/{id}")
-    public List<Product>getProductByCustomerId(@PathVariable Long id)
+    public List<ProductResponse>getProductByCustomerId(@PathVariable Long id)
             throws Exception
     {
         return productService.findProductsByCustomer(id);

@@ -1,8 +1,10 @@
 package com.example.specifications.services;
 
 import com.example.specifications.entity.Product;
+import com.example.specifications.models.ProductResponse;
 import com.example.specifications.specification.ProductSpecs;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -23,15 +25,15 @@ public class ProductService {
     }
 
 
-    public List<Product> findProductsByCustomer(Long customerId) {
+    public List<ProductResponse> findProductsByCustomer(Long customerId) {
         Specification<Product> spec = ProductSpecs.findProductsByCustomerId(customerId);
 
         CriteriaBuilder criteriaBuilder = this.entityManager.getCriteriaBuilder();
-        CriteriaQuery<Product> criteriaQuery = criteriaBuilder.createQuery(Product.class);
+        CriteriaQuery<ProductResponse> criteriaQuery = criteriaBuilder.createQuery(ProductResponse.class);
         Root<Product> productRoot = criteriaQuery.from(Product.class);
 
         criteriaQuery.select(criteriaBuilder.construct(
-                Product.class,
+                ProductResponse.class,
                 productRoot.get("id"),
                 productRoot.get("price"),
                 productRoot.get("description")
@@ -42,8 +44,10 @@ public class ProductService {
             criteriaQuery.where(spec.toPredicate(productRoot, criteriaQuery, criteriaBuilder));
         }
 
-        return this.entityManager.createQuery(criteriaQuery).getResultList();
+        TypedQuery<ProductResponse> query = this.entityManager.createQuery(criteriaQuery);
+        return query.getResultList();
     }
+
 
 
 
