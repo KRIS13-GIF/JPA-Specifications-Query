@@ -1,6 +1,7 @@
 package com.example.specifications.specification;
 
 import com.example.specifications.entity.Product;
+import com.example.specifications.models.ProductRequest;
 import com.example.specifications.utils.QueryUtils;
 import org.springframework.data.jpa.domain.Specification;
 

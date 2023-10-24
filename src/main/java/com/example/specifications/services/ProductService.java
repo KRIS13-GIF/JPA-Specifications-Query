@@ -1,6 +1,7 @@
 package com.example.specifications.services;
 
 import com.example.specifications.entity.Product;
+import com.example.specifications.models.ProductRequest;
 import com.example.specifications.models.ProductResponse;
 import com.example.specifications.specification.ProductSpecs;
 import jakarta.persistence.EntityManager;
@@ -24,10 +25,17 @@ public class ProductService {
         this.entityManager = entityManager;
     }
 
-
     public List<ProductResponse> findProductsByCustomer(Long customerId) {
         Specification<Product> spec = ProductSpecs.findProductsByCustomerId(customerId);
+        return executeProductQuery(spec);
+    }
 
+    public List<ProductResponse> getPartialProductDescription(String description) {
+        Specification<Product> spec = ProductSpecs.partialProductDescription(description);
+        return executeProductQuery(spec);
+    }
+
+    private List<ProductResponse> executeProductQuery(Specification<Product> spec) {
         CriteriaBuilder criteriaBuilder = this.entityManager.getCriteriaBuilder();
         CriteriaQuery<ProductResponse> criteriaQuery = criteriaBuilder.createQuery(ProductResponse.class);
         Root<Product> productRoot = criteriaQuery.from(Product.class);
@@ -40,17 +48,9 @@ public class ProductService {
         ));
 
         // Apply the Specification to the criteria query
-        if (spec != null) {
-            criteriaQuery.where(spec.toPredicate(productRoot, criteriaQuery, criteriaBuilder));
-        }
+        criteriaQuery.where(spec.toPredicate(productRoot, criteriaQuery, criteriaBuilder));
 
         TypedQuery<ProductResponse> query = this.entityManager.createQuery(criteriaQuery);
         return query.getResultList();
     }
-
-
-
-
-
-
 }
