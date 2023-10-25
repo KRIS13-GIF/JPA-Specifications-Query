@@ -1,0 +1,25 @@
+<hibernate-mapping package="com.example.specifications.entity">
+
+    <class name="Product" table="product">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+
+        <property name="name" type="java.lang.String">
+            <column name="name" />
+        </property>
+
+        <property name="price" type="double">
+            <column name="price" />
+        </property>
+
+        <property name="description" type="java.lang.String">
+            <column name="description" />
+        </property>
+
+        <many-to-one name="customer" class="Customer" column="customer_id" />
+
+    </class>
+
+</hibernate-mapping>

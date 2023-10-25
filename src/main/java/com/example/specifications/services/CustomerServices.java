@@ -52,6 +52,40 @@ public class CustomerServices {
     }
 
 
+    public List<CustomerProfile> findCustomerProfilesWithUserProfileInfo(String keyword) {
+
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<CustomerProfile> query = criteriaBuilder.createQuery(CustomerProfile.class);
+        Root<CustomerProfile> profileRoot = query.from(CustomerProfile.class);
+
+        // Create a list of predicates for filtering (Do not type @RequestBody, use @RequestParams in your controller)
+        Predicate emailPredicate = criteriaBuilder.like(profileRoot.get("email"), "%" + keyword + "%");
+        Predicate addressPredicate = criteriaBuilder.like(profileRoot.get("address"), "%" + keyword + "%");
+        Predicate phonePredicate = criteriaBuilder.like(profileRoot.get("phoneNumber"), "%" + keyword + "%");
+        Predicate loyaltyPredicate = criteriaBuilder.like(profileRoot.get("loyalty_level"), "%" + keyword + "%");
+        Predicate notesPredicate = criteriaBuilder.like(profileRoot.get("notes"), "%" + keyword + "%");
+
+        Predicate orPredicate = criteriaBuilder.or(emailPredicate, addressPredicate, phonePredicate, loyaltyPredicate, notesPredicate);
+
+
+        query.where(orPredicate);
+
+        query.select(criteriaBuilder.construct(
+                CustomerProfile.class,
+                profileRoot.get("id"),
+                profileRoot.get("email"),
+                profileRoot.get("address"),
+                profileRoot.get("phoneNumber"),
+                profileRoot.get("loyalty_level"),
+                profileRoot.get("notes"),
+                profileRoot.get("customer")
+        ));
+
+
+        return entityManager.createQuery(query).getResultList();
+    }
+
+
 
 
 

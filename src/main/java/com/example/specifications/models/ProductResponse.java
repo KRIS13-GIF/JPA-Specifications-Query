@@ -14,5 +14,6 @@ public class ProductResponse {
     private Long id;
     private double price;
     private String description;
+    private String customerName;
 
 }

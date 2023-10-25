@@ -1,14 +1,12 @@
 package com.example.specifications.controller;
 
 import com.example.specifications.entity.Customer;
+import com.example.specifications.entity.CustomerProfile;
 import com.example.specifications.models.CustomerRequest;
 import com.example.specifications.models.CustomerResponse;
 import com.example.specifications.services.CustomerServices;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,6 +34,9 @@ public class CustomerController {
         return customerServices.getCustomerAgeBetween18And25();
     }
 
-
+    @GetMapping("/customer-profiles")
+    public List<CustomerProfile> findCustomerProfilesWithUserProfileInfo(@RequestParam String keyword) {
+        return customerServices.findCustomerProfilesWithUserProfileInfo(keyword);
+    }
 
 }

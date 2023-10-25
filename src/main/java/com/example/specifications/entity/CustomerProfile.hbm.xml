@@ -1,0 +1,32 @@
+<hibernate-mapping package="com.example.specifications.entity">
+
+    <class name="CustomerProfile" table="customer_profile">
+        <id name="id" type="long">
+            <column name="id" />
+        </id>
+
+        <property name="email" type="java.lang.String">
+            <column name="email" />
+        </property>
+
+        <property name="address" type="java.lang.String">
+            <column name="address" />
+        </property>
+
+        <property name="phoneNumber" type="java.lang.String">
+            <column name="phone_number" />
+        </property>
+
+        <property name="loyalty_level" type="java.lang.String">
+            <column name="loyalty_level" />
+        </property>
+
+        <property name="notes" type="java.lang.String">
+            <column name="notes" />
+        </property>
+
+        <one-to-one name="customer" class="Customer" constrained="true" />
+
+    </class>
+
+</hibernate-mapping>

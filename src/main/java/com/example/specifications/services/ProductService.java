@@ -43,9 +43,9 @@ public class ProductService {
         criteriaQuery.select(criteriaBuilder.construct(
                 ProductResponse.class,
                 productRoot.get("id"),
-                productRoot.get("customer").get("name"),
                 productRoot.get("price"),
-                productRoot.get("description")
+                productRoot.get("description"),
+                productRoot.get("customer").get("name")
         ));
 
         // Apply the Specification to the criteria query

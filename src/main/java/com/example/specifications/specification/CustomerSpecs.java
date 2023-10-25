@@ -22,6 +22,23 @@ public class CustomerSpecs {
         return (((root, query, criteriaBuilder) -> criteriaBuilder.between(root.get("age"),18,25)));
     }
 
+    /*  // No need in the service. Is already implemented inside it.
+
+    public static Specification<Customer> findUserProfileInfo(String keyword) {
+        return (root, query, criteriaBuilder) -> {
+
+            root.join("customerProfile");
+
+            // Add criteria to your query based on the properties of CustomerProfile
+            return criteriaBuilder.or(
+                    criteriaBuilder.like(root.get("customerProfile.email"), "%" + keyword + "%"),
+                    criteriaBuilder.like(root.get("customerProfile.address"), "%" + keyword + "%"),
+                    criteriaBuilder.like(root.get("customerProfile.phoneNumber"), "%" + keyword + "%"),
+                    criteriaBuilder.like(root.get("customerProfile.loyaltyLevel"), "%" + keyword + "%"),
+                    criteriaBuilder.like(root.get("customerProfile.notes"), "%" + keyword + "%")
+            );
+        };
+    }*/
 }
 
 

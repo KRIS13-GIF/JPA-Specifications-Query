@@ -1,0 +1,25 @@
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd" version="2.0">
+
+    <entity class="com.example.specifications.entity.Customer" name="Customer">
+        <attributes>
+            <id name="id">
+                <column name="id" />
+                <generated-value strategy="IDENTITY" />
+            </id>
+            <basic name="name">
+                <column name="name" />
+            </basic>
+            <basic name="sales">
+                <column name="sales" />
+            </basic>
+            <basic name="points">
+                <column name="points" />
+            </basic>
+            <basic name="age">
+                <column name="age" />
+            </basic>
+        </attributes>
+    </entity>
+
+</entity-mappings>

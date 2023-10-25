@@ -20,11 +20,22 @@ public class CustomerProfile {
     private String email;
     private String address;
     private String phoneNumber;
-    private boolean isPreferredCustomer;
     private String loyalty_level;
     private String notes;
 
     @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
+
+
+
+    public CustomerProfile(Long id,String email, String address, String phoneNumber, String loyalty_level, String notes) {
+        this.id=id;
+        this.email = email;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.loyalty_level = loyalty_level;
+        this.notes = notes;
+    }
 }
